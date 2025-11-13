@@ -1,20 +1,15 @@
-Got it ✅ — here’s your **complete README.md** in **one continuous Markdown file**, properly formatted and ready to drop directly into your repository.
-
----
-
-````markdown
 # 📦 Inventory Management System
 
-A full-stack inventory management application featuring a **React frontend** and a **unique Node.js backend**.  
-The backend's core business logic and data persistence are handled by **pre-compiled C++ executables**, which are called directly by the Node.js/Express server.
+A **full-stack inventory management application** featuring a React frontend and a unique Node.js backend.  
+The backend’s core business logic and data persistence are handled by **pre-compiled C++ executables**, which are called directly by the Node.js/Express server.
 
 ---
 
 ## ✨ Features
 
 ### 🔐 Core Backend Logic
-- **C++ Powered:** All business logic (authentication, product/order management) is handled by compiled C++ executables for performance.
-- **Binary File Storage:** Data is persisted in simple, efficient binary files (`.db`) managed directly by the C++ layer.
+- **C++ Powered:** All business logic (authentication, product/order management) is handled by compiled C++ executables for high performance.  
+- **Binary File Storage:** Data is persisted in efficient binary files (`.db`) managed directly by the C++ layer.  
 - **Node.js API Wrapper:** A lightweight Express.js server acts as an API gateway, spawning C++ child processes to handle requests.
 
 ### 🔑 Authentication
@@ -40,21 +35,20 @@ The backend's core business logic and data persistence are handled by **pre-comp
 
 ## 🚀 Getting Started
 
-### Prerequisites
-Ensure the following are installed:
-- **Node.js** (v18 or higher recommended)  
-- **npm** (comes with Node.js)  
-- **C++ Compiler:** such as `g++` or equivalent
+### 🧩 Prerequisites
+Make sure you have the following installed:
+- **Node.js** (v18 or higher recommended)
+- **npm** (comes with Node.js)
+- **C++ Compiler** (e.g., `g++`) — required to build backend logic
 
 ---
 
-## 🛠️ Installation
+## ⚙️ Installation
 
 ```bash
 # Clone this repository (or use your existing project folder)
 git clone https://your-repo-url/inventory-system.git
 cd inventory-system
-````
 
 ### 1. Setup the Backend
 
