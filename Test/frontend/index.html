@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Management</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 
+      This project uses Vite. To run it, you would:
+      1. Create a `package.json` with dependencies "react", "react-dom", "axios".
+      2. Add devDependencies "@vitejs/plugin-react", "vite".
+      3. Create `vite.config.js`.
+      4. Place the single-file `App.jsx` in `src/App.jsx`.
+      5. Create `src/main.jsx` to render `<App />`.
+      
+      For this single-file environment, we assume a build tool
+      processes `App.jsx` and includes it here.
+    -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
