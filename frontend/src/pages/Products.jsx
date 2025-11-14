@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../api/client';
 import Layout from '../components/Layout';
 import ProductForm from '../components/ProductForm';
+import { FaTrash, FaPen } from "react-icons/fa";
 
 const Products = ({ onNavigate }) => {
   const [products, setProducts] = useState([]);
@@ -9,6 +10,12 @@ const Products = ({ onNavigate }) => {
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+
+  // SORT CONFIGURATION
+  const [sortConfig, setSortConfig] = useState({
+    by: "price",
+    order: "asc",
+  });
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -58,21 +65,72 @@ const Products = ({ onNavigate }) => {
     setEditingProduct(product);
     setShowModal(true);
   };
-  
+
   const handleAddNew = () => {
     setEditingProduct(null);
     setShowModal(true);
   };
 
+  // SORTING LOGIC
+  const sortedProducts = [...products].sort((a, b) => {
+    let valA = a[sortConfig.by];
+    let valB = b[sortConfig.by];
+
+    if (typeof valA === "string") valA = valA.toLowerCase();
+    if (typeof valB === "string") valB = valB.toLowerCase();
+
+    if (valA < valB) return sortConfig.order === "asc" ? -1 : 1;
+    if (valA > valB) return sortConfig.order === "asc" ? 1 : -1;
+    return 0;
+  });
+
+  const handleSortChange = (e) => {
+    const { name, value } = e.target;
+    setSortConfig((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <Layout onNavigate={onNavigate} title="Products">
+
+      {/* ADD PRODUCT BUTTON */}
       <div className="flex justify-end mb-4">
         <button
           onClick={handleAddNew}
-          className="px-4 py-2 font-medium text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700"
+          className="px-6 py-3 font-semibold text-white rounded-xl shadow-lg bg-gradient-to-r from-blue-500 to-purple-600 transform transition-all duration-300 hover:scale-110 hover:shadow-2xl"
         >
-          Add New Product
+          + Add Product
         </button>
+      </div>
+
+      {/* SORTING BAR */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+        <div className="flex justify-between items-center">
+          <h3 className="text-lg font-semibold text-gray-900">Sort Products</h3>
+
+          <div className="flex space-x-3">
+            <select
+              name="by"
+              value={sortConfig.by}
+              onChange={handleSortChange}
+              className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="price">Price</option>
+              <option value="name">Name</option>
+              <option value="quantity">Quantity</option>
+              <option value="id">Recently Added</option>
+            </select>
+
+            <select
+              name="order"
+              value={sortConfig.order}
+              onChange={handleSortChange}
+              className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       {error && <p className="mb-4 text-red-600">{error}</p>}
@@ -93,34 +151,44 @@ const Products = ({ onNavigate }) => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {products.map((product) => (
-                <tr key={product.id}>
+
+              {sortedProducts.map((product) => (
+                <tr key={product.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">{product.sku}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{product.category}</td>
                   <td className="px-6 py-4 whitespace-nowrap">${product.price.toFixed(2)}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{product.quantity}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+
+                  {/* ACTION BUTTONS */}
+                  <td className="px-6 py-4 whitespace-nowrap flex items-center space-x-4">
+
+                    {/* EDIT ICON BUTTON */}
                     <button
                       onClick={() => handleEdit(product)}
-                      className="px-3 py-1 text-sm text-blue-600 rounded-md hover:bg-blue-100"
+                      className="text-gray-500 hover:text-blue-600 transition transform hover:scale-125"
                     >
-                      Edit
+                      <FaPen size={18} />
                     </button>
+
+                    {/* DELETE ICON BUTTON */}
                     <button
                       onClick={() => handleDelete(product.id)}
-                      className="px-3 py-1 ml-2 text-sm text-red-600 rounded-md hover:bg-red-100"
+                      className="text-gray-500 hover:text-red-600 transition transform hover:scale-125"
                     >
-                      Delete
+                      <FaTrash size={18} />
                     </button>
+
                   </td>
                 </tr>
               ))}
+
             </tbody>
           </table>
         </div>
       )}
 
+      {/* PRODUCT FORM MODAL */}
       {showModal && (
         <ProductForm
           product={editingProduct}
@@ -129,8 +197,10 @@ const Products = ({ onNavigate }) => {
             setShowModal(false);
             setEditingProduct(null);
           }}
+          saveButtonClass="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg shadow-md hover:shadow-xl"
         />
       )}
+
     </Layout>
   );
 };

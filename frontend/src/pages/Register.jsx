@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Package, Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Register = ({ onNavigate }) => {
@@ -13,102 +14,175 @@ const Register = ({ onNavigate }) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    if(password.length < 4) {
-      setError("Password must be at least 4 characters");
+
+    if (password.length < 4) {
+      setError('Password must be at least 4 characters');
       return;
     }
+
     try {
       await register(name, email, password);
-      setSuccess('Registration successful! Please log in.');
+      setSuccess('Registration successful! Redirecting...');
       setTimeout(() => onNavigate('#login'), 2000);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Registration failed');
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold text-center text-gray-900">
-          Create Account
-        </h2>
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Full Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              autoComplete="name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            />
+    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      
+      {/* Left Brand Panel */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
+
+        <div className="relative z-10 flex flex-col justify-center px-16 text-white">
+          <div className="mb-8 flex items-center space-x-3">
+            <div className="p-3 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
+              <Package className="w-8 h-8" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold">InventoryPro</h1>
+              <p className="text-blue-200 text-sm">Smart Management System</p>
+            </div>
           </div>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-          {error && <p className="text-sm text-center text-red-600">{error}</p>}
-          {success && <p className="text-sm text-center text-green-600">{success}</p>}
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full px-4 py-2 font-medium text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-            >
-              {loading ? 'Registering...' : 'Register'}
-            </button>
-          </div>
-          <p className="text-sm text-center">
-            Already have an account?{' '}
-            <a
-              href="#login"
-              onClick={(e) => { e.preventDefault(); onNavigate('#login'); }}
-              className="font-medium text-blue-600 hover:text-blue-500"
-            >
-              Log in
-            </a>
+
+          <h2 className="text-5xl font-bold mb-6 leading-tight">
+            Create Your<br />
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Account Today
+            </span>
+          </h2>
+
+          <p className="text-xl text-blue-100 max-w-md">
+            Join the platform trusted for real-time inventory management.
           </p>
-        </form>
+        </div>
+      </div>
+
+      {/* Right Form */}
+      <div className="flex-1 flex items-center justify-center px-6 py-12">
+        <div className="w-full max-w-md">
+
+          {/* Mobile Logo */}
+          <div className="lg:hidden mb-8 text-center">
+            <div className="inline-flex items-center space-x-3 mb-2">
+              <div className="p-2 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+                <Package className="w-6 h-6 text-white" />
+              </div>
+              <h1 className="text-2xl font-bold text-white">InventoryPro</h1>
+            </div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8">
+
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-white mb-2">Create Account</h2>
+              <p className="text-blue-200">
+                Join us to start managing your inventory smarter.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+
+              {/* Full Name */}
+              <div>
+                <label className="block text-sm font-medium text-blue-100 mb-2">Full Name</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
+                  <input
+                    type="text"
+                    value={name}
+                    required
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Saad Baig"
+                  />
+                </div>
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium text-blue-100 mb-2">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
+                  <input
+                    type="email"
+                    value={email}
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="you@company.com"
+                  />
+                </div>
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="block text-sm font-medium text-blue-100 mb-2">Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-300" />
+                  <input
+                    type="password"
+                    value={password}
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="4 characters minimum"
+                  />
+                </div>
+              </div>
+
+              {/* Error */}
+              {error && (
+                <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-xl">
+                  <p className="text-red-200 text-center text-sm">{error}</p>
+                </div>
+              )}
+
+              {/* Success */}
+              {success && (
+                <div className="p-3 bg-green-500/20 border border-green-500/30 rounded-xl">
+                  <p className="text-green-200 text-center text-sm">{success}</p>
+                </div>
+              )}
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full group relative py-3.5 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-blue-500/50 transform hover:scale-[1.02] transition-all disabled:opacity-50"
+              >
+                <span className="flex items-center justify-center">
+                  {loading ? 'Creating Account...' : 'Register'}
+                  {!loading && (
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  )}
+                </span>
+              </button>
+
+              {/* Link */}
+              <p className="text-center text-sm text-blue-200">
+                Already have an account?{' '}
+                <a
+                  href="#login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('#login');
+                  }}
+                  className="font-semibold text-blue-300 hover:text-blue-200"
+                >
+                  Log in
+                </a>
+              </p>
+
+            </form>
+          </div>
+
+          <p className="mt-6 text-center text-xs text-blue-300/60">
+            Protected by enterprise-grade security
+          </p>
+        </div>
       </div>
     </div>
   );
