@@ -39,13 +39,13 @@ const Router = () => {
       case '#register':
         return <Register onNavigate={handleNav} />;
       case '#dashboard':
-        return <ProtectedRoute><Dashboard onNavigate={handleNav} /></ProtectedRoute>;
+        return <ProtectedRoute onNavigate={handleNav}><Dashboard onNavigate={handleNav} /></ProtectedRoute>;
       case '#products':
-        return <ProtectedRoute><Products onNavigate={handleNav} /></ProtectedRoute>;
+        return <ProtectedRoute onNavigate={handleNav}><Products onNavigate={handleNav} /></ProtectedRoute>;
       case '#orders':
-        return <ProtectedRoute><Orders onNavigate={handleNav} /></ProtectedRoute>;
+        return <ProtectedRoute onNavigate={handleNav}><Orders onNavigate={handleNav} /></ProtectedRoute>;
       case '#reports':
-        return <ProtectedRoute><Reports onNavigate={handleNav} /></ProtectedRoute>;
+        return <ProtectedRoute onNavigate={handleNav}><Reports onNavigate={handleNav} /></ProtectedRoute>;
       default:
         return <ProtectedRoute><Dashboard onNavigate={handleNav} /></ProtectedRoute>;
     }
