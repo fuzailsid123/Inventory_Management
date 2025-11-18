@@ -4,9 +4,11 @@
 #include <vector>
 #include <string>
 
-const std::string USERS_DB = "../db/users.db";
-const std::string PRODUCTS_DB = "../db/products.db";
-const std::string ORDERS_DB = "../db/orders.db";
+using namespace std;
+
+const string USERS_DB = "../db/users.db";
+const string PRODUCTS_DB = "../db/products.db";
+const string ORDERS_DB = "../db/orders.db";
 
 
 /**
@@ -26,7 +28,7 @@ bool save_data(const std::vector<T>& data, const std::string& filename);
  * @return A vector of the loaded data.
  */
 template<typename T>
-std::vector<T> load_data(const std::string& filename);
+vector<T> load_data(const string& filename);
 
 /**
  * Gets the next available ID for a new item.
@@ -35,4 +37,4 @@ std::vector<T> load_data(const std::string& filename);
  * @return The next integer ID.
  */
 template<typename T>
-int get_next_id(const std::vector<T>& vec);
+int get_next_id(const vector<T>& vec);

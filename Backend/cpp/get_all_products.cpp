@@ -1,10 +1,12 @@
 #include "storage.hpp"
 #include <iostream>
 
-int main() {
-    std::vector<Product> products = load_data<Product>(PRODUCTS_DB);
+using namespace std;
 
-    std::cout << vector_to_json(products, product_to_json) << std::endl;
+int main() {
+    vector<Product> products = load_data<Product>(PRODUCTS_DB);
+
+    cout << vector_to_json(products, product_to_json) << endl;
 
     return 0;
 }

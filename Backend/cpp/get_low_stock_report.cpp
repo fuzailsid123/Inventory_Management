@@ -3,8 +3,10 @@
 #include <queue>
 #include <vector>
 
+using namespace std;
+
 int main() {
-    std::vector<Product> products = load_data<Product>(PRODUCTS_DB);
+    vector<Product> products = load_data<Product>(PRODUCTS_DB);
 
     ProductMinHeap low_stock_heap;
 
@@ -18,7 +20,7 @@ int main() {
         low_stock_heap.pop();
     }
 
-    std::cout << vector_to_json(sorted_low_stock, product_to_json) << std::endl;
+    cout << vector_to_json(sorted_low_stock, product_to_json) << endl;
     
     return 0;
 }

@@ -33,7 +33,7 @@ const Dashboard = ({ onNavigate }) => {
 
   return (
     <Layout onNavigate={onNavigate} title="Dashboard">
-      <div className="min-h-full bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="min-h-full bg-linear-to-br from-slate-50 to-blue-50">
 
         {/* Welcome Header */}
         <div className="mb-8">
@@ -54,10 +54,10 @@ const Dashboard = ({ onNavigate }) => {
 
               {/* Total Products */}
               <div className="group relative overflow-hidden bg-white/70 backdrop-blur-xl rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-6">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full -mr-16 -mt-16"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-blue-500/10 to-purple-500/10 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg">
+                    <div className="p-3 bg-linear-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                       </svg>
@@ -66,12 +66,12 @@ const Dashboard = ({ onNavigate }) => {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                       </svg>
-                      <span>12%</span>
+                      {/* <span>12%</span> */}
                     </div>
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-1">Total Products</p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <p className="text-4xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                       {stats.products}
                     </p>
                   </div>
@@ -80,10 +80,10 @@ const Dashboard = ({ onNavigate }) => {
 
               {/* Low Stock Items */}
               <div className="group relative overflow-hidden bg-white/70 backdrop-blur-xl rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] p-6">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-full -mr-16 -mt-16"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-red-500/10 to-orange-500/10 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg">
+                    <div className="p-3 bg-linear-to-br from-red-500 to-red-600 rounded-xl shadow-lg">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
                       </svg>
@@ -100,7 +100,7 @@ const Dashboard = ({ onNavigate }) => {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-1">Low Stock Items</p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                    <p className="text-4xl font-bold bg-linear-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
                       {stats.lowStock}
                     </p>
                   </div>
@@ -164,7 +164,7 @@ const Dashboard = ({ onNavigate }) => {
 
               <button
                 onClick={() => onNavigate('#products')}
-                className="group flex items-center justify-between p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                className="group flex items-center justify-between p-4 bg-linear-to-r from-blue-600 to-purple-600 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="flex items-center space-x-3">
                   <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -218,13 +218,13 @@ const Dashboard = ({ onNavigate }) => {
                   </svg>
                 </div>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+                  <div className="flex justify-between items-center p-3 bg-linear-to-r from-blue-50 to-purple-50 rounded-lg">
                     <span className="text-sm font-medium text-gray-700">Inventory Health</span>
                     <span className="text-sm font-bold text-blue-600">
                       {stats.lowStock === 0 ? 'Excellent' : stats.lowStock < 5 ? 'Good' : 'Needs Attention'}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+                  <div className="flex justify-between items-center p-3 bg-linear-to-r from-purple-50 to-pink-50 rounded-lg">
                     <span className="text-sm font-medium text-gray-700">Stock Level</span>
                     <span className="text-sm font-bold text-purple-600">
                       {Math.round((stats.products - stats.lowStock) / stats.products * 100) || 0}%

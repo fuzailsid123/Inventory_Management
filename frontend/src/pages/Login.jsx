@@ -22,10 +22,10 @@ const Login = ({ onNavigate, redirect = false }) => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="flex min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Left side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
         <div className="relative z-10 flex flex-col justify-center px-16 text-white">
           <div className="mb-8 flex items-center space-x-3">
             <div className="p-3 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
@@ -39,7 +39,7 @@ const Login = ({ onNavigate, redirect = false }) => {
           
           <h2 className="text-5xl font-bold mb-6 leading-tight">
             Manage Your<br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Inventory Smarter
             </span>
           </h2>
@@ -108,7 +108,7 @@ const Login = ({ onNavigate, redirect = false }) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all"
-                    placeholder="you@company.com"
+                    placeholder="Email"
                     required
                   />
                 </div>
@@ -125,7 +125,7 @@ const Login = ({ onNavigate, redirect = false }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all"
-                    placeholder="Enter your password"
+                    placeholder="Password"
                     required
                   />
                 </div>
@@ -139,9 +139,9 @@ const Login = ({ onNavigate, redirect = false }) => {
                   />
                   Remember me
                 </label>
-                <a href="#" className="text-blue-300 hover:text-blue-200 font-medium transition-colors">
+                {/* <a href="#" className="text-blue-300 hover:text-blue-200 font-medium transition-colors">
                   Forgot password?
-                </a>
+                </a> */}
               </div>
 
               {error && (
@@ -153,7 +153,7 @@ const Login = ({ onNavigate, redirect = false }) => {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-full group relative py-3.5 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-blue-500/50 transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full group relative py-3.5 px-6 bg-linear-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-blue-500/50 transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 <span className="flex items-center justify-center">
                   {loading ? 'Signing in...' : 'Sign In'}
@@ -167,14 +167,14 @@ const Login = ({ onNavigate, redirect = false }) => {
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-white/20"></div>
                 </div>
-                <div className="relative flex justify-center text-sm">
+                {/* <div className="relative flex justify-center text-sm">
                   <span className="px-4 bg-slate-900/50 text-blue-200 backdrop-blur-sm">
                     or continue with
                   </span>
-                </div>
+                </div> */}
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              {/* <div className="grid grid-cols-2 gap-3">
                 <button className="flex items-center justify-center px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 transition-all backdrop-blur-sm">
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -190,7 +190,7 @@ const Login = ({ onNavigate, redirect = false }) => {
                   </svg>
                   GitHub
                 </button>
-              </div>
+              </div> */}
 
               <p className="text-center text-sm text-blue-200">
                 Don't have an account?{' '}
@@ -208,9 +208,9 @@ const Login = ({ onNavigate, redirect = false }) => {
             </div>
           </div>
 
-          <p className="mt-6 text-center text-xs text-blue-300/60">
+          {/* <p className="mt-6 text-center text-xs text-blue-300/60">
             Protected by enterprise-grade security
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

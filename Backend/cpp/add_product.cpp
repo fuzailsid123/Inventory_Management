@@ -4,35 +4,37 @@
 #include <unordered_map>
 #include <cstring>
 
+using namespace std;
+
 int main(int argc, char* argv[]) {
     if (argc != 6) {
-        std::cerr << "Error: Expected 5 arguments (sku, name, price, quantity, category)" << std::endl;
+        cerr << "Error: Expected 5 arguments (sku, name, price, quantity, category)" << endl;
         return 1;
     }
 
-    std::string sku = argv[1];
-    std::string name = argv[2];
+    string sku = argv[1];
+    string name = argv[2];
     double price;
     int quantity;
-    std::string category = argv[5];
+    string category = argv[5];
 
     try {
-        price = std::stod(argv[3]);
-        quantity = std::stoi(argv[4]);
-    } catch (const std::exception& e) {
-        std::cerr << "Error: Invalid price or quantity" << std::endl;
+        price = stod(argv[3]);
+        quantity = stoi(argv[4]);
+    } catch (const exception& e) {
+        cerr << "Error: Invalid price or quantity" << std::endl;
         return 1;
     }
 
-    std::vector<Product> products = load_data<Product>(PRODUCTS_DB);
+    vector<Product> products = load_data<Product>(PRODUCTS_DB);
 
-    std::unordered_map<std::string, bool> sku_map;
+    unordered_map<string, bool> sku_map;
     for(const auto& p : products) {
         sku_map[p.sku] = true;
     }
 
     if (sku_map.count(sku)) {
-        std::cerr << "Error: SKU already exists" << std::endl;
+        cerr << "Error: SKU already exists" << endl;
         return 1;
     }
 
@@ -47,9 +49,9 @@ int main(int argc, char* argv[]) {
     products.push_back(new_product);
 
     if (save_data(products, PRODUCTS_DB)) {
-        std::cout << product_to_json(new_product) << std::endl;
+        cout << product_to_json(new_product) << endl;
     } else {
-        std::cerr << "Error: Could not save product data" << std::endl;
+        cerr << "Error: Could not save product data" << endl;
         return 1;
     }
 

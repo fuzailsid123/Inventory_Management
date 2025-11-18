@@ -3,27 +3,29 @@
 #include <string>
 #include<cstring>
 
+using namespace std;
+
 int main(int argc, char* argv[]) {
     if (argc != 7) {
-        std::cerr << "Error: Expected 6 arguments (id, sku, name, price, quantity, category)" << std::endl;
+        cerr << "Error: Expected 6 arguments (id, sku, name, price, quantity, category)" << endl;
         return 1;
     }
 
     int id_to_update;
     try {
-        id_to_update = std::stoi(argv[1]);
-    } catch (const std::exception& e) {
-        std::cerr << "Error: Invalid ID" << std::endl;
+        id_to_update = stoi(argv[1]);
+    } catch (const exception& e) {
+        cerr << "Error: Invalid ID" << endl;
         return 1;
     }
     
-    std::string sku = argv[2];
-    std::string name = argv[3];
-    double price = std::stod(argv[4]);
-    int quantity = std::stoi(argv[5]);
-    std::string category = argv[6];
+    string sku = argv[2];
+    string name = argv[3];
+    double price = stod(argv[4]);
+    int quantity = stoi(argv[5]);
+    string category = argv[6];
 
-    std::vector<Product> products = load_data<Product>(PRODUCTS_DB);
+    vector<Product> products = load_data<Product>(PRODUCTS_DB);
     Product* product_to_update = nullptr;
 
     for (auto& p : products) {
@@ -34,7 +36,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (product_to_update == nullptr) {
-        std::cerr << "Error: Product not found" << std::endl;
+        cerr << "Error: Product not found" << endl;
         return 1;
     }
 
@@ -47,7 +49,7 @@ int main(int argc, char* argv[]) {
     if (save_data(products, PRODUCTS_DB)) {
         std::cout << product_to_json(*product_to_update) << std::endl;
     } else {
-        std::cerr << "Error: Could not save updated product data" << std::endl;
+        cerr << "Error: Could not save updated product data" << endl;
         return 1;
     }
 

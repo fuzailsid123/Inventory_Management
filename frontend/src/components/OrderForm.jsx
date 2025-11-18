@@ -148,7 +148,7 @@ const OrderForm = ({ products, onSave, onClose }) => {
             </button>
             <button
               type="submit"
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg shadow-md hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium"
+              className="px-6 py-3 bg-linear-to-r from-blue-600 to-blue-700 text-white rounded-lg shadow-md hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium"
             >
               Create Order
             </button>

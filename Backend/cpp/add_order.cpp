@@ -4,21 +4,23 @@
 #include <unordered_map>
 #include <cstring>
 
-void parse_items_json(const std::string& json_str, std::vector<OrderItem>& items) {
-    std::string s = json_str;
-    s.erase(std::remove(s.begin(), s.end(), ' '), s.end());
+using namespace std;
+
+void parse_items_json(const string& json_str, vector<OrderItem>& items) {
+    string s = json_str;
+    s.erase(remove(s.begin(), s.end(), ' '), s.end());
     
     size_t pos = 0;
-    while((pos = s.find("{\"productId\":", pos)) != std::string::npos) {
+    while((pos = s.find("{\"productId\":", pos)) != string::npos) {
         OrderItem item;
         
         size_t id_start = pos + 13;
         size_t id_end = s.find(",\"quantity\":", id_start);
-        item.productId = std::stoi(s.substr(id_start, id_end - id_start));
+        item.productId = stoi(s.substr(id_start, id_end - id_start));
         
         size_t qty_start = id_end + 12;
         size_t qty_end = s.find("}", qty_start);
-        item.quantity = std::stoi(s.substr(qty_start, qty_end - qty_start));
+        item.quantity = stoi(s.substr(qty_start, qty_end - qty_start));
         
         items.push_back(item);
         pos = qty_end;
@@ -27,30 +29,30 @@ void parse_items_json(const std::string& json_str, std::vector<OrderItem>& items
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
-        std::cerr << "Error: Expected 2 arguments (customerName, itemsJSON)" << std::endl;
+        cerr << "Error: Expected 2 arguments (customerName, itemsJSON)" << endl;
         return 1;
     }
 
-    std::string customerName = argv[1];
-    std::string itemsJson = argv[2];
-    std::vector<OrderItem> parsedItems;
+    string customerName = argv[1];
+    string itemsJson = argv[2];
+    vector<OrderItem> parsedItems;
 
     try {
         parse_items_json(itemsJson, parsedItems);
-    } catch (const std::exception& e) {
-        std::cerr << "Error: Failed to parse items JSON" << std::endl;
+    } catch (const exception& e) {
+        cerr << "Error: Failed to parse items JSON" << endl;
         return 1;
     }
 
     if (parsedItems.empty()) {
-        std::cerr << "Error: No items in order" << std::endl;
+        cerr << "Error: No items in order" << endl;
         return 1;
     }
 
-    std::vector<Product> products = load_data<Product>(PRODUCTS_DB);
-    std::vector<Order> orders = load_data<Order>(ORDERS_DB);
+    vector<Product> products = load_data<Product>(PRODUCTS_DB);
+    vector<Order> orders = load_data<Order>(ORDERS_DB);
 
-    std::unordered_map<int, Product*> product_map;
+    unordered_map<int, Product*> product_map;
     for (auto& p : products) {
         product_map[p.id] = &p;
     }
@@ -63,12 +65,12 @@ int main(int argc, char* argv[]) {
 
     for (const auto& item : parsedItems) {
         if (product_map.count(item.productId) == 0) {
-            std::cerr << "Error: Product with ID " << item.productId << " not found" << std::endl;
+            cerr << "Error: Product with ID " << item.productId << " not found" << endl;
             return 1;
         }
         Product* p = product_map[item.productId];
         if (p->quantity < item.quantity) {
-            std::cerr << "Error: Insufficient stock for product " << p->name << ". Have " << p->quantity << ", need " << item.quantity << std::endl;
+            cerr << "Error: Insufficient stock for product " << p->name << ". Have " << p->quantity << ", need " << item.quantity << endl;
             return 1;
         }
     }
@@ -89,9 +91,9 @@ int main(int argc, char* argv[]) {
     orders.push_back(new_order);
 
     if (save_data(products, PRODUCTS_DB) && save_data(orders, ORDERS_DB)) {
-        std::cout << order_to_json(new_order) << std::endl;
+        cout << order_to_json(new_order) << endl;
     } else {
-        std::cerr << "Error: Failed to save order or update products" << std::endl;
+        cerr << "Error: Failed to save order or update products" << endl;
         return 1;
     }
 

@@ -3,21 +3,23 @@
 #include <string>
 #include <cstring>
 
+using namespace std;
+
 int main(int argc, char* argv[]) {
     if (argc != 4) {
-        std::cerr << "Error: Expected 3 arguments (email, password, name)" << std::endl;
+        cerr << "Error: Expected 3 arguments (email, password, name)" << endl;
         return 1;
     }
 
-    std::string email = argv[1];
-    std::string password = argv[2];
-    std::string name = argv[3];
+    string email = argv[1];
+    string password = argv[2];
+    string name = argv[3];
 
-    std::vector<User> users = load_data<User>(USERS_DB);
+    vector<User> users = load_data<User>(USERS_DB);
 
     for (const auto& user : users) {
-        if (std::string(user.email) == email) {
-            std::cerr << "Error: Email already exists" << std::endl;
+        if (string(user.email) == email) {
+            cerr << "Error: Email already exists" << endl;
             return 1;
         }
     }
@@ -31,9 +33,9 @@ int main(int argc, char* argv[]) {
     users.push_back(new_user);
 
     if (save_data(users, USERS_DB)) {
-        std::cout << new_user.email << std::endl;
+        cout << new_user.email << endl;
     } else {
-        std::cerr << "Error: Could not save user data" << std::endl;
+        cerr << "Error: Could not save user data" << endl;
         return 1;
     }
 

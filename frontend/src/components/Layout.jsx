@@ -36,7 +36,7 @@ const Layout = ({
   const isActive = (hash) => window.location.hash === hash;
 
   return (
-    <div className="flex h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="flex h-screen bg-linear-to-br from-slate-50 to-blue-50">
       {/* Mobile Menu Button */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -63,7 +63,7 @@ const Layout = ({
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40 w-72 transition-transform duration-300 ease-in-out`}
       >
-        <div className="flex flex-col h-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 border-r border-white/10">
+        <div className="flex flex-col h-full bg-linear-to-br from-slate-900 via-blue-900 to-slate-900 border-r border-white/10">
           {/* Logo */}
           <div className="p-6 border-b border-white/10">
             <div className="flex items-center space-x-3">
@@ -102,7 +102,7 @@ const Layout = ({
                     <div
                       className={`p-2 rounded-lg transition-all duration-200 ${
                         active
-                          ? "bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg"
+                          ? "bg-linear-to-r from-blue-500 to-purple-500 shadow-lg"
                           : "bg-white/5 group-hover:bg-white/10"
                       }`}
                     >
@@ -142,7 +142,7 @@ const Layout = ({
           <div className="p-4 border-t border-white/10">
             <div className="mb-4 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
               <div className="flex items-center space-x-3 mb-3">
-                <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full">
+                <div className="p-2 bg-linear-to-r from-blue-500 to-purple-500 rounded-full">
                   <User className="w-5 h-5 text-white" />
                 </div>
 
@@ -156,7 +156,7 @@ const Layout = ({
 
               <button
                 onClick={handleLogout}
-                className="w-full group flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-red-500/50 transform hover:scale-[1.02] transition-all duration-200"
+                className="w-full group flex items-center justify-center space-x-2 px-4 py-2.5 bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-red-500/50 transform hover:scale-[1.02] transition-all duration-200"
               >
                 <LogOut className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 <span>Logout</span>
@@ -164,8 +164,8 @@ const Layout = ({
             </div>
 
             <div className="text-center">
-              <p className="text-xs text-blue-300/60">© 2024 InventoryPro</p>
-              <p className="text-xs text-blue-300/40 mt-1">Version 1.0.0</p>
+              {/* <p className="text-xs text-blue-300/60">© 2024 InventoryPro</p> */}
+              {/* <p className="text-xs text-blue-300/40 mt-1">Version 1.0.0</p> */}
             </div>
           </div>
         </div>
@@ -190,7 +190,7 @@ const Layout = ({
           </div>
 
           <div className="flex items-center space-x-3">
-            <div className="px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg">
+            <div className="px-4 py-2 bg-linear-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg">
               <p className="text-sm font-medium text-gray-700">
                 Welcome,{" "}
                 <span className="text-blue-600 font-semibold">
@@ -204,7 +204,7 @@ const Layout = ({
         {/* Mobile Header */}
         <header className="lg:hidden flex items-center justify-between px-6 py-4 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm">
           <div className="ml-12">
-            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               {title}
             </h1>
           </div>

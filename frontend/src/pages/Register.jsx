@@ -15,8 +15,8 @@ const Register = ({ onNavigate }) => {
     setError('');
     setSuccess('');
 
-    if (password.length < 4) {
-      setError('Password must be at least 4 characters');
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
       return;
     }
 
@@ -30,11 +30,11 @@ const Register = ({ onNavigate }) => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="flex min-h-screen bg-linear-to-br from-slate-900 via-blue-900 to-slate-900">
       
       {/* Left Brand Panel */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
 
         <div className="relative z-10 flex flex-col justify-center px-16 text-white">
           <div className="mb-8 flex items-center space-x-3">
@@ -49,7 +49,7 @@ const Register = ({ onNavigate }) => {
 
           <h2 className="text-5xl font-bold mb-6 leading-tight">
             Create Your<br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Account Today
             </span>
           </h2>
@@ -78,9 +78,9 @@ const Register = ({ onNavigate }) => {
 
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-white mb-2">Create Account</h2>
-              <p className="text-blue-200">
+              {/* <p className="text-blue-200">
                 Join us to start managing your inventory smarter.
-              </p>
+              </p> */}
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -96,7 +96,7 @@ const Register = ({ onNavigate }) => {
                     required
                     onChange={(e) => setName(e.target.value)}
                     className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Saad Baig"
+                    placeholder="Full Name"
                   />
                 </div>
               </div>
@@ -112,7 +112,7 @@ const Register = ({ onNavigate }) => {
                     required
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="you@company.com"
+                    placeholder="Email"
                   />
                 </div>
               </div>
@@ -128,7 +128,7 @@ const Register = ({ onNavigate }) => {
                     required
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300/50 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="4 characters minimum"
+                    placeholder="Password"
                   />
                 </div>
               </div>
@@ -151,7 +151,7 @@ const Register = ({ onNavigate }) => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full group relative py-3.5 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-blue-500/50 transform hover:scale-[1.02] transition-all disabled:opacity-50"
+                className="w-full group relative py-3.5 px-6 bg-linear-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-blue-500/50 transform hover:scale-[1.02] transition-all disabled:opacity-50"
               >
                 <span className="flex items-center justify-center">
                   {loading ? 'Creating Account...' : 'Register'}
@@ -178,10 +178,10 @@ const Register = ({ onNavigate }) => {
 
             </form>
           </div>
-
+{/* 
           <p className="mt-6 text-center text-xs text-blue-300/60">
             Protected by enterprise-grade security
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

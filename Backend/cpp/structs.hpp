@@ -45,7 +45,7 @@ struct Product {
 struct OrderItem {
     int productId;
     int quantity;
-    double pricePerItem; // Price at the time of order
+    double pricePerItem;
 
     OrderItem() : productId(0), quantity(0), pricePerItem(0.0) {}
 };
@@ -53,7 +53,7 @@ struct OrderItem {
 struct Order {
     int id;
     char customerName[100];
-    OrderItem items[20]; // Max 20 items per order
+    OrderItem items[20];
     int itemCount;
     double totalValue;
 

@@ -2,11 +2,13 @@
 #include <fstream>
 #include <iostream>
 
+using namespace std;
+
 template<typename T>
-bool save_data(const std::vector<T>& data, const std::string& filename) {
-    std::ofstream file(filename, std::ios::binary | std::ios::trunc);
+bool save_data(const vector<T>& data, const string& filename) {
+    ofstream file(filename, ios::binary | ios::trunc);
     if (!file) {
-        std::cerr << "Error: Cannot open file for writing: " << filename << std::endl;
+        cerr << "Error: Cannot open file for writing: " << filename << endl;
         return false;
     }
 
@@ -20,9 +22,9 @@ bool save_data(const std::vector<T>& data, const std::string& filename) {
 }
 
 template<typename T>
-std::vector<T> load_data(const std::string& filename) {
-    std::vector<T> data;
-    std::ifstream file(filename, std::ios::binary);
+vector<T> load_data(const string& filename) {
+    vector<T> data;
+    ifstream file(filename, ios::binary);
 
     if (!file) {
         return data; 
@@ -41,11 +43,10 @@ std::vector<T> load_data(const std::string& filename) {
 }
 
 template<typename T>
-int get_next_id(const std::vector<T>& vec) {
+int get_next_id(const vector<T>& vec) {
     if (vec.empty()) {
         return 1;
     }
-    // Find the max ID
     int max_id = 0;
     for (const auto& item : vec) {
         if (item.id > max_id) {
@@ -55,14 +56,14 @@ int get_next_id(const std::vector<T>& vec) {
     return max_id + 1;
 }
 
-template bool save_data<User>(const std::vector<User>&, const std::string&);
-template std::vector<User> load_data<User>(const std::string&);
-template int get_next_id<User>(const std::vector<User>&);
+template bool save_data<User>(const vector<User>&, const string&);
+template vector<User> load_data<User>(const string&);
+template int get_next_id<User>(const vector<User>&);
 
-template bool save_data<Product>(const std::vector<Product>&, const std::string&);
-template std::vector<Product> load_data<Product>(const std::string&);
-template int get_next_id<Product>(const std::vector<Product>&);
+template bool save_data<Product>(const vector<Product>&, const string&);
+template vector<Product> load_data<Product>(const string&);
+template int get_next_id<Product>(const vector<Product>&);
 
-template bool save_data<Order>(const std::vector<Order>&, const std::string&);
-template std::vector<Order> load_data<Order>(const std::string&);
-template int get_next_id<Order>(const std::vector<Order>&);
+template bool save_data<Order>(const vector<Order>&, const string&);
+template vector<Order> load_data<Order>(const string&);
+template int get_next_id<Order>(const vector<Order>&);
