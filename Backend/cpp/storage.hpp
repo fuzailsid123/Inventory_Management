@@ -19,7 +19,7 @@ const string ORDERS_DB = "../db/orders.db";
  * @return true on success, false on failure.
  */
 template<typename T>
-bool save_data(const std::vector<T>& data, const std::string& filename);
+bool save_data(const vector<T>& data, const string& filename);
 
 /**
  * Loads a vector of structs from a binary file.

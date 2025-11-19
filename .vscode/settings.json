@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.dbclient-js": "javascript",
         "xstring": "cpp",
         "string": "cpp",
         "vector": "cpp",
@@ -13,6 +14,7 @@
         "system_error": "cpp",
         "type_traits": "cpp",
         "xutility": "cpp",
-        "xlocale": "cpp"
+        "xlocale": "cpp",
+        "fstream": "cpp"
     }
 }

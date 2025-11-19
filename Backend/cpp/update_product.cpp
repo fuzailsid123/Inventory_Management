@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
     if (!category.empty()) strncpy(product_to_update->category, category.c_str(), 49);
 
     if (save_data(products, PRODUCTS_DB)) {
-        std::cout << product_to_json(*product_to_update) << std::endl;
+        cout << product_to_json(*product_to_update) << endl;
     } else {
         cerr << "Error: Could not save updated product data" << endl;
         return 1;

@@ -14,7 +14,7 @@ int main() {
         low_stock_heap.push(p);
     }
 
-    std::vector<Product> sorted_low_stock;
+    vector<Product> sorted_low_stock;
     while (!low_stock_heap.empty()) {
         sorted_low_stock.push_back(low_stock_heap.top());
         low_stock_heap.pop();
